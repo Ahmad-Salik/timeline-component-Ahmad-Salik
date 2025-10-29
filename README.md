@@ -4,7 +4,7 @@ A production-grade, fully accessible Timeline/Gantt View component built with Re
 
 ## 🚀 Live Storybook
 
-[Your Deployed Storybook URL - Deploy to Chromatic, Vercel, or Netlify]
+https://6902421a4161ba0a2cf39bcc--timeline-component-ahmad-salik.netlify.app/?path=/docs/components-timelineview--docs
 
 ## ✨ Features
 
