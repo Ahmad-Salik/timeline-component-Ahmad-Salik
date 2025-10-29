@@ -10,7 +10,6 @@ interface UseZoomProps {
 
 export const useZoom = ({ initialMode = 'week', onZoomChange }: UseZoomProps = {}) => {
   const [viewMode, setViewMode] = useState<ViewMode>(initialMode);
-  const [scale, setScale] = useState(1);
 
   const zoomIn = useCallback(() => {
     let newMode: ViewMode = viewMode;
@@ -54,7 +53,6 @@ export const useZoom = ({ initialMode = 'week', onZoomChange }: UseZoomProps = {
 
   return {
     viewMode,
-    scale,
     zoomIn,
     zoomOut,
     setZoomLevel,

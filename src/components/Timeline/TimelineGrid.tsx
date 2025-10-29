@@ -7,14 +7,12 @@ interface TimelineGridProps {
   startDate: Date;
   endDate: Date;
   viewMode: 'day' | 'week' | 'month';
-  containerWidth: number;
 }
 
 export const TimelineGrid: React.FC<TimelineGridProps> = ({
   startDate,
   endDate,
   viewMode,
-  containerWidth,
 }) => {
   const intervals = useMemo(() => {
     const result: Date[] = [];

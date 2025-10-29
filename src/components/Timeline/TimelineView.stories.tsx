@@ -232,6 +232,7 @@ export const InteractiveDemo: Story = {
   },
   args: {
     rows: sampleRows,
+    tasks: {},  // Add empty tasks object as it's required by type
     startDate: new Date(today.getFullYear(), today.getMonth(), 1),
     endDate: new Date(today.getFullYear(), today.getMonth() + 2, 0),
     viewMode: 'week',

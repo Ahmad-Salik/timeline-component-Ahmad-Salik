@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { TimelineTask } from '@/types/timeline.types';
 import { Button } from '@/components/primitives/Button';
 import { Slider } from '@/components/primitives/Slider';
-import { formatDate, formatDateRange } from '@/utils/formatting.utils';
+import { formatDateRange } from '@/utils/formatting.utils';
 
 interface TaskDetailSidebarProps {
   task: TimelineTask | null;

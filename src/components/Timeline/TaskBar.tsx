@@ -10,7 +10,7 @@ interface TaskBarProps {
   onDragStart?: (taskId: string, x: number, y: number) => void;
   onDragEnd?: () => void;
   onClick?: (task: TimelineTask) => void;
-  onResize?: (taskId: string, newStartDate: Date, newEndDate: Date) => void;
+
   enableDragDrop?: boolean;
   isSelected?: boolean;
 }
@@ -21,7 +21,7 @@ export const TaskBar: React.FC<TaskBarProps> = ({
   onDragStart,
   onDragEnd,
   onClick,
-  onResize,
+
   enableDragDrop = false,
   isSelected = false,
 }) => {
@@ -55,7 +55,7 @@ export const TaskBar: React.FC<TaskBarProps> = ({
   };
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (_: MouseEvent) => {
       if (!isDragging && !isResizing) return;
       // Drag/resize logic would be handled by parent
     };

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import clsx from 'clsx';
 import { TimelineViewProps, TimelineTask, DependencyLine as DependencyLineType } from '@/types/timeline.types';
 import { TimelineGrid } from './TimelineGrid';
@@ -6,7 +6,7 @@ import { TimelineRow } from './TimelineRow';
 import { DependencyLine } from './DependencyLine';
 import { TaskDetailSidebar } from './TaskDetailSidebar';
 import { calculateTaskPosition } from '@/utils/position.utils';
-import { calculateDependencyLine, getTaskDependencies } from '@/utils/dependency.utils';
+import { calculateDependencyLine } from '@/utils/dependency.utils';
 import { VIEW_MODE_CONFIG, TIMELINE_CONSTANTS } from '@/constants/timeline.constants';
 
 export const TimelineView: React.FC<TimelineViewProps> = ({
@@ -16,31 +16,18 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
   endDate,
   viewMode,
   onTaskUpdate,
-  onTaskMove,
+
   onTaskClick,
   className = '',
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  // container width measurement removed: TimelineGrid no longer accepts containerWidth
   const [selectedTask, setSelectedTask] = useState<TimelineTask | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [hoveredTaskId, setHoveredTaskId] = useState<string | null>(null);
 
   const pixelsPerDay = VIEW_MODE_CONFIG[viewMode].pixelsPerDay;
 
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.offsetWidth - TIMELINE_CONSTANTS.LEFT_PANEL_WIDTH;
-        setContainerWidth(width);
-      }
-    };
-
-    updateWidth();
-    window.addEventListener('resize', updateWidth);
-
-    return () => window.removeEventListener('resize', updateWidth);
-  }, []);
+  // width measurement removed
 
   // Calculate dependency lines
   const dependencyLines = useMemo(() => {
@@ -116,12 +103,11 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
       role="grid"
       aria-label="Timeline view"
     >
-      <div ref={containerRef} className="overflow-x-auto">
+      <div className="overflow-x-auto">
         <TimelineGrid
           startDate={startDate}
           endDate={endDate}
           viewMode={viewMode}
-          containerWidth={containerWidth}
         />
 
         {/* Rows container */}
@@ -148,7 +134,7 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
           )}
 
           {/* Timeline rows */}
-          {rows.map((row, index) => (
+          {rows.map((row) => (
             <div
               key={row.id}
               onMouseEnter={() => {
